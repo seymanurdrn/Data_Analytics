@@ -1,0 +1,228 @@
+CREATE TABLE midterm.customers
+( customer_id NUMERIC(10,0) CONSTRAINT ctr_customer_id_pk PRIMARY KEY,
+  last_name VARCHAR(25) NOT NULL, 
+  first_name VARCHAR(25) NOT NULL, 
+  home_phone VARCHAR(12), 
+  address VARCHAR(100) NOT NULL, 
+  city VARCHAR(30) NOT NULL, 
+  state VARCHAR(2) NOT NULL, 
+  email VARCHAR(25), 
+  cell_phone VARCHAR(12) );
+
+  CREATE SEQUENCE customer_id 
+  START WITH 101 
+  INCREMENT BY 1 
+  MINVALUE 101;
+
+  INSERT INTO midterm.customers (customer_id, last_name, first_name, home_phone, address, city, state, email, cell_phone)
+  VALUES (nextval('customer_id'), 'Clark', 'Emily', '123-456-7890', '123 Main St', 'Buffalo', 'NY', 'clarke@ecc.edu', '716-555-1212'),
+         (nextval('customer_id'), 'Bell', 'David', '234-567-8901', '123 Main St', 'Birmingham', 'AL', 'belldavid@ecc.edu', '504-589-2128'),
+         (nextval('customer_id'), 'Allen', 'George', '345-678-9012', '123 Main St', 'Bridgeport', 'CT', 'georgeall@ecc.edu', '555-140-9872'),
+         (nextval('customer_id'), 'Edwards', 'Thomas', '456-789-0123', '123 Main St', 'Jacksonville', 'FL', 'edwarsthom@ecc.edu', '352-753-8989'),
+         (nextval('customer_id'), 'Davis', 'Lily', '567-890-1123', '123 Main St', 'Indianapolis', 'IN', 'davisli@ecc.edu', '123-642-1076'),
+         (nextval('customer_id'), 'Brown', 'Charlie', '678-901-8520', '123 Main St', 'Columbus', 'OH', 'brown@ecc.edu', '440-850-2190'),
+         (nextval('customer_id'), 'Bennett', 'Linda', '987-777-1112', '123 Main St', 'Topeka', 'KS', 'bennettli@ecc.edu', '716-505-6755'),
+         (nextval('customer_id'), 'Black', 'Daniel', '876-557-9024', '123 Main St', 'Montgomery', 'AL', 'blackd@ecc.edu', '555-260-7785'),
+         (nextval('customer_id'), 'Gardener', 'James', '765-456-8754', '123 Main St', 'Charleston', 'WV', 'jamesg@ecc.edu', '123-860-7893'),
+         (nextval('customer_id'), 'Taylor', 'Alexander', '654-860-7153', '123 Main St', 'Cheyenne', 'WY', 'alexandertr@ecc.edu', '504-654-1212');
+
+SELECT * 
+FROM midterm.customers
+ORDER BY customer_id ASC;
+
+
+
+
+
+CREATE TABLE midterm.movies
+( title_id NUMERIC(10,0) CONSTRAINT mie_title_id_pk PRIMARY KEY,
+  title VARCHAR(60) NOT NULL, 
+  description VARCHAR(400) NOT NULL, 
+  rating VARCHAR(4),
+  category VARCHAR(20),
+  release_date DATE,
+  CONSTRAINT mie_rating_ck CHECK (rating IN ('G', 'PG', 'PG13', 'NC17', 'M', 'R')),
+  CONSTRAINT mie_category_ck CHECK (category IN ('DRAMA', 'COMEDY', 'ACTION', 'CHILD', 'SCIFI', 'DOCUMENTARY', 'ROMCOM', 'WESTERN')) );
+
+  CREATE SEQUENCE title_id 
+  START WITH 1 
+  INCREMENT BY 1 
+  MINVALUE 1;
+
+  INSERT INTO midterm.movies (title_id, title, description, rating, category, release_date)
+  VALUES (nextval('title_id'), 'Remember the Titans', 'The true story of a newly appointed African-American coach and his high school team on their first 
+         season as a racially integrated unit.', 'PG', 'DRAMA', '29-SEP-2000'),
+         (nextval('title_id'), 'Forrest Gump', 'The history of the United States from the 1950s to the 70s unfolds from the perspective of an Alabama man with an IQ of 75, who yearns to be reunited with his childhood sweetheart.', 'PG', 'DRAMA', '06-JUL-1994'),
+         (nextval('title_id'), 'Blade Runner', 'A blade runner must pursue and terminate four replicants who stole a ship in space and have returned to Earth to find their creator.', 'NC17', 'ACTION', '25-JUN-1982'),
+         (nextval('title_id'), 'Armageddon', 'After discovering that an asteroid the size of Texas will impact Earth in less than a month, NASA recruits a misfit team of deep-core drillers to save the planet.', 'M', 'ACTION', '01-JUL-1998'),
+         (nextval('title_id'), 'The Dark Knight', 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.', 'NC17', 'ACTION', '16-JUL-2008'),
+         (nextval('title_id'), 'Donnie Darko', 'After narrowly escaping a bizarre accident, a troubled teenager is plagued by visions of a man in a large rabbit suit who manipulates him to commit a series of crimes.', 'PG13', 'SCIFI', '18-JAN-2001'),
+         (nextval('title_id'), 'Braveheart', 'Scottish warrior William Wallace leads his countrymen in a rebellion to free his homeland from the tyranny of King Edward I of England.', 'PG13', 'DRAMA', '24-MAY-1995'),
+         (nextval('title_id'), 'Mean Streets', 'A small-time hood tries to keep the peace between his friend Johnny and Johnnys creditors.', 'R', 'DRAMA', '02-OCT-1973'),
+         (nextval('title_id'), 'K-PAX', 'PROT is a patient at a mental hospital who claims to be from a faraway planet named K-PAX. His psychiatrist tries to help him, only to begin to doubt his own explanations.', 'PG13', 'SCIFI', '22-OCT-2001'),
+         (nextval('title_id'), '28 Days Later', 'Four weeks after a mysterious, incurable virus spreads throughout the UK, a handful of survivors try to find sanctuary.', 'NC17', 'DRAMA', '31-OCT-2002'),
+         (nextval('title_id'), 'The Fisher King', 'A former radio DJ, suicidally despondent because of a terrible mistake he made, finds redemption in helping a deranged homeless man who was an unwitting victim of that mistake.', 'R', 'COMEDY', '09-SEP-1991'),
+         (nextval('title_id'), 'Lost in Translation', 'A faded movie star and a neglected young woman form an unlikely bond after crossing paths in Tokyo.', 'PG', 'COMEDY', '31-AUG-2003'),
+         (nextval('title_id'), 'Jackie Brown', 'A flight attendant with a criminal past gets nabbed by the ATF for smuggling. Under pressure to become an informant against the drug dealer she works for, she must find a way to secure her future without getting killed.', 'M', 'DRAMA', '24-DEC-1997'),
+         (nextval('title_id'), 'Minority Report', 'In a future where a special police unit is able to arrest murderers before they commit their crimes, an officer from that unit is himself accused of a future murder.', 'NC17', 'ACTION', '20-JUN-2002'),
+         (nextval('title_id'), 'Hotel Rwanda', 'Paul Rusesabagina, a hotel manager, houses over a thousand Tutsi refugees during their struggle against the Hutu militia in Rwanda, Africa.', 'R', 'DRAMA', '11-SEP-2004');
+
+SELECT * 
+FROM midterm.movies
+ORDER BY title_id ASC;
+
+
+
+
+
+CREATE TABLE midterm.media
+( media_id NUMERIC(10,0) CONSTRAINT mia_media_id_pk PRIMARY KEY, 
+  format VARCHAR(3) NOT NULL, 
+  title_id NUMERIC(10,0) NOT NULL,
+  CONSTRAINT mia_title_id_fk FOREIGN KEY(title_id) 
+  REFERENCES midterm.movies(title_id) );
+
+  CREATE SEQUENCE media_id 
+  START WITH 92
+  INCREMENT BY 1 
+  MINVALUE 92;
+
+  INSERT INTO midterm.media (media_id, format, title_id)
+  VALUES (nextval('media_id'), 'DVD', 1),
+         (nextval('media_id'), 'VHS', 2),
+         (nextval('media_id'), 'DVD', 3),
+         (nextval('media_id'), 'VHS', 4),
+         (nextval('media_id'), 'DVD', 5),
+         (nextval('media_id'), 'VHS', 6),
+         (nextval('media_id'), 'DVD', 7),
+         (nextval('media_id'), 'VHS', 8),
+         (nextval('media_id'), 'DVD', 9),
+         (nextval('media_id'), 'VHS', 10),
+         (nextval('media_id'), 'DVD', 11),
+         (nextval('media_id'), 'VHS', 12),
+         (nextval('media_id'), 'DVD', 13),
+         (nextval('media_id'), 'VHS', 14),
+         (nextval('media_id'), 'DVD', 15);
+
+SELECT * 
+FROM midterm.media
+ORDER BY media_id ASC;
+
+
+
+
+
+CREATE TABLE midterm.rental_history
+( media_id NUMERIC(10,0) NOT NULL,
+  rental_date DATE DEFAULT CURRENT_DATE NOT NULL,
+  customer_id NUMERIC(10,0) NOT NULL,
+  return_date DATE,
+  PRIMARY KEY (media_id, rental_date),
+  CONSTRAINT rth_media_id_fk FOREIGN KEY(media_id) 
+  REFERENCES midterm.media(media_id),
+  CONSTRAINT rth_customer_id_fk FOREIGN KEY(customer_id) 
+  REFERENCES midterm.customers(customer_id) );
+
+  INSERT INTO midterm.rental_history (media_id, rental_date, customer_id, return_date)
+  VALUES (92, CURRENT_DATE, 110, CURRENT_DATE + INTERVAL '5 days'),
+         (93, '28-DEC-2021', 103, NULL),
+         (94, '04-OCT-2023', 106, '14-OCT-2023'),
+         (95, '13-JUL-2022', 108, '18-JUL-2022'),
+         (96, '15-MAR-2020', 101, NULL),
+         (97, '08-APR-2021', 110, '17-APR-2021'),
+         (98, '12-SEP-2022', 107, '17-SEP-2022'),
+         (99, '28-DEC-2020', 102, '07-JAN-2021'),
+         (100, '23-JUN-2019', 109, NULL),
+         (101, '18-FEB-2020', 110, '28-FEB-2020'),
+         (102, '01-AUG-2023', 104, NULL),
+         (103, '25-NOV-2020', 103, '28-NOV-2020'),
+         (104, '17-SEP-2022', 105, '21-SEP-2022'),
+         (105, '19-DEC-2022', 101, NULL),
+         (106, '22-JAN-2023', 108, '29-JAN-2023');
+
+SELECT * 
+FROM midterm.rental_history
+ORDER BY rental_date ASC;
+
+
+
+
+
+CREATE TABLE midterm.actors
+( actor_id NUMERIC(10,0) CONSTRAINT act_actor_id_pk PRIMARY KEY,
+  stage_name VARCHAR(40),
+  first_name VARCHAR(25) NOT NULL,
+  last_name VARCHAR(25) NOT NULL,
+  birth_date date NOT NULL );
+
+  CREATE SEQUENCE actor_id 
+  START WITH 1001
+  INCREMENT BY 1 
+  MINVALUE 1001;
+
+  INSERT INTO midterm.actors (actor_id, stage_name, first_name, last_name, birth_date)
+  VALUES (nextval('actor_id'), 'Coach Herman Boone', 'Denzel', 'Washington', '28-DEC-1954'),
+         (nextval('actor_id'), 'Forrest Gump', 'Tom', 'Hanks', '09-JUL-1956'),
+         (nextval('actor_id'), 'Deckard', 'Harrison', 'Ford', '13-JUL-1942'),
+         (nextval('actor_id'), 'Harry S. Stamper', 'Bruce', 'Willis', '19-MAR-1955'),
+         (nextval('actor_id'), 'Joker', 'Heath', 'Ledger', '04-APR-1979'),
+         (nextval('actor_id'), 'Eddie Darko', 'Holmes', 'Osborne', '07-NOV-1947'),
+         (nextval('actor_id'), 'William Wallace', 'Mel', 'Gibson', '03-JAN-1956'),
+         (nextval('actor_id'), 'Michael', 'Richard', 'Romanus', '08-FEB-1943'),
+         (nextval('actor_id'), 'Prot', 'Kevin', 'Spacey', '26-JUL-1959'),
+         (nextval('actor_id'), 'Jim', 'Cillian', 'Murphy', '25-MAY-1976'),
+         (nextval('actor_id'), 'Jack', 'Jeff', 'Bridges', '04-DEC-1949'),
+         (nextval('actor_id'), 'Bob Harris', 'Bill', 'Murray', '21-SEP-1950'),
+         (nextval('actor_id'), 'Jackie Brown', 'Pam', 'Grier', '26-MAY-1949'),
+         (nextval('actor_id'), 'Agatha', 'Samantha', 'Morton', '13-MAY-1977'),
+         (nextval('actor_id'), 'Paul Rusesabagina', 'Don', 'Cheadle', '28-OCT-1974');
+
+SELECT * 
+FROM midterm.actors
+ORDER BY actor_id ASC;
+
+
+
+
+
+CREATE TABLE midterm.roles
+( actor_id NUMERIC(10,0) NOT NULL,
+  title_id NUMERIC(10,0) NOT NULL,
+  comments VARCHAR(40),
+  PRIMARY KEY (actor_id, title_id),
+  CONSTRAINT rls_actor_id_fk FOREIGN KEY(actor_id)
+  REFERENCES midterm.actors(actor_id),
+  CONSTRAINT rls_title_id_fk FOREIGN KEY(title_id) 
+  REFERENCES midterm.movies(title_id) ); 
+
+  INSERT INTO midterm.roles (actor_id, title_id, comments)
+  VALUES (1001, 1, 'American Football Coach'),
+         (1002, 2, 'He is an optimistic and pure character.'),
+	 (1003, 3, 'Special Police'),
+         (1004, 4, 'Team Leader'),
+         (1005, 5, 'Chaotic and Psychopathic Character'),
+         (1006, 6, 'Family Loving Father'),
+	 (1007, 7, 'Scottish Leader'),
+         (1008, 8, 'Guilty'),
+         (1009, 9, 'Mysterious Mental Patient'),
+	 (1010, 10, 'Character Trying to Survive'),
+         (1011, 11, 'Radio Presenter'),
+         (1012, 12, 'Middle Aged, Famous Actor'),
+	 (1013, 13, 'She is a intelligent character.'),
+         (1014, 14, 'She is a precog who can see the future'),
+         (1015, 15, 'Hotel Manager');
+
+SELECT *
+FROM midterm.roles
+ORDER BY actor_id ASC;
+
+
+
+CREATE VIEW NOT_YET_RETURNED AS
+SELECT mia.title_id, rh.media_id, return_date
+FROM midterm.media mia
+JOIN midterm.rental_history rh ON mia.media_id = rh.media_id
+WHERE rh.return_date IS NULL;
+
+SELECT * 
+FROM NOT_YET_RETURNED;
